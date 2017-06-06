@@ -31,6 +31,9 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    #Thrid Party Dependencies
+    'modeltranslation',
+    #Django Dependencies
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -39,6 +42,9 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     #Database Dependencies
     'django.contrib.gis',
+
+    #My Dependencies
+    'core',
 ]
 
 MIDDLEWARE = [
@@ -108,7 +114,7 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/1.11/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'es'
 
 TIME_ZONE = 'UTC'
 
@@ -130,3 +136,13 @@ MEDIA_ROOT=os.path.join(os.path.dirname(BASE_DIR), "media_cdn")
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, "static")
     ]
+
+
+#Setting for modeltranslation
+#http://django-modeltranslation.readthedocs.io/en/latest/installation.html
+LANGUAGES = (
+    ('es', 'Spanish'),
+    ('en', 'English'),
+)
+MODELTRANSLATION_LANGUAGES = ('es', 'en')
+MODELTRANSLATION_DEFAULT_LANGUAGE = 'es'
