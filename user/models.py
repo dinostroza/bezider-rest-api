@@ -46,8 +46,8 @@ class User(AbstractBaseUser, PermissionsMixin):
         "Is the user a member of staff?"
         return (self.email in settings.STAFF_EMAILS)
 
-    # @property
-    # def is_superuser(self):
-    #     "Is the user a superuser of staff?"
-    #     # Simplest possible answer: All admins are staff
-    #     return (self.email == 'dinostroza@gmail.com')
+    @property
+    def is_superuser(self):
+    	"Is the user a superuser of staff?"
+    	#Simplest possible answer: All admins are staff
+    	return (self.email in settings.STAFF_EMAILS)

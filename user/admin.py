@@ -14,7 +14,7 @@ class CustomUserAdmin(admin.ModelAdmin):
 			'fields': ('self_description', 'points','rank'),
 		}),
 		('Django Data', {
-			'fields': ('is_superuser','is_active','groups','user_permissions','last_login'),
+			'fields': ('is_active','groups','user_permissions','last_login'),
 		}),
 	)
 
