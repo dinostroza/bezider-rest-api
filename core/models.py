@@ -1,5 +1,6 @@
 from django.contrib.gis.db import models
 from django.conf import settings
+from .managers import NewsManager
 
 def newsgategory_upload_location(instance,filename):
 	return "newsgategory/%s/%s" %(instance.id,filename)
@@ -50,7 +51,9 @@ class News(models.Model):
 	shared_count  = models.IntegerField(default=0)
 	is_active     = models.BooleanField(default=True)
 
-	#objects=NewsManager()
+	objects=NewsManager()
+
+
 
 	def latitude(self):
 		return self.location.y

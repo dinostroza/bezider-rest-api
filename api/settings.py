@@ -140,6 +140,8 @@ STATICFILES_DIRS = [
 
 #Setting for modeltranslation
 #http://django-modeltranslation.readthedocs.io/en/latest/installation.html
+USE_I18N = True
+
 LANGUAGES = (
     ('es', 'Spanish'),
     ('en', 'English'),
