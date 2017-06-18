@@ -31,6 +31,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'user',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -39,6 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     #Database Dependencies
     'django.contrib.gis',
+    #Bezider Apps
 ]
 
 MIDDLEWARE = [
@@ -130,3 +132,12 @@ MEDIA_ROOT=os.path.join(os.path.dirname(BASE_DIR), "media_cdn")
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, "static")
     ]
+
+#Custom bezider user 
+
+AUTH_USER_MODEL='user.User'
+
+#Add member of staff that can enter admin site
+STAFF_EMAILS =[
+    'dinostrozars@gmail.com',
+]
