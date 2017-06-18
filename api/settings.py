@@ -45,6 +45,7 @@ INSTALLED_APPS = [
 
     #My Dependencies
     'core',
+    'social'
 ]
 
 MIDDLEWARE = [
