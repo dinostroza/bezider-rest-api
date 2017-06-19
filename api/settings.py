@@ -31,7 +31,9 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
-    'user',
+    #Thrid Party Dependencies
+    'modeltranslation',
+    #Django Dependencies
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -40,7 +42,10 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     #Database Dependencies
     'django.contrib.gis',
-    #Bezider Apps
+    #Own App Dependencies
+    'user',
+    'core',
+    'social'
 ]
 
 MIDDLEWARE = [
@@ -110,7 +115,7 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/1.11/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'es'
 
 TIME_ZONE = 'UTC'
 
@@ -141,3 +146,14 @@ AUTH_USER_MODEL='user.User'
 STAFF_EMAILS =[
     'dinostrozars@gmail.com',
 ]
+
+#Setting for modeltranslation
+#http://django-modeltranslation.readthedocs.io/en/latest/installation.html
+USE_I18N = True
+
+LANGUAGES = (
+    ('es', 'Spanish'),
+    ('en', 'English'),
+)
+MODELTRANSLATION_LANGUAGES = ('es', 'en')
+MODELTRANSLATION_DEFAULT_LANGUAGE = 'es'
