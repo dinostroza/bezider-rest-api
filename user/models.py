@@ -4,7 +4,7 @@ from django.db import models
 from django.core.mail import send_mail
 from django.contrib.auth.models import PermissionsMixin
 from django.contrib.auth.base_user import AbstractBaseUser
-from api import settings
+from django.conf import settings
 
 from .managers import UserManager
 
@@ -51,3 +51,7 @@ class User(AbstractBaseUser, PermissionsMixin):
     	"Is the user a superuser of staff?"
     	#Simplest possible answer: All admins are staff
     	return (self.email in settings.STAFF_EMAILS)
+
+    @is_superuser.setter
+    def is_superuser(self,value):
+        pass
