@@ -142,11 +142,6 @@ STATICFILES_DIRS = [
 
 AUTH_USER_MODEL='user.User'
 
-#Add member of staff that can enter admin site
-STAFF_EMAILS =[
-    'dinostrozars@gmail.com',
-]
-
 #Setting for modeltranslation
 #http://django-modeltranslation.readthedocs.io/en/latest/installation.html
 USE_I18N = True
