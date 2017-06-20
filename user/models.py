@@ -1,15 +1,22 @@
 from __future__ import unicode_literals
 
-from django.db import models
+from django.contrib.gis.db import models
 from django.core.mail import send_mail
 from django.contrib.auth.models import PermissionsMixin
 from django.contrib.auth.base_user import AbstractBaseUser
 from django.conf import settings
+from django.core import exceptions
 
 from .managers import UserManager
 
 
 class User(AbstractBaseUser, PermissionsMixin):
+
+    def __init__(self, *args, **kwargs):
+        self._is_superuser = kwargs.get('is_superuser')
+        self._is_staff     = kwargs.get('is_staff')
+        super(User, self).__init__(*args, **kwargs)
+
     email            = models.EmailField('email address', unique=True)
     username         = models.CharField('username', max_length=30, unique=True,blank=False)
     first_name       = models.CharField('first name', max_length=30, blank=True)
@@ -43,15 +50,85 @@ class User(AbstractBaseUser, PermissionsMixin):
 
     @property
     def is_staff(self):
-        "Is the user a member of staff?"
-        return (self.email in settings.STAFF_EMAILS)
+        if self._is_staff is not None:
+            return self._is_staff
+
+        if self.id is not None:
+            return self._exist_in_staffuser()
+
+        raise ValueError('is_staff has not assigned')
+
+    @is_staff.setter
+    def is_staff(self,value):
+        self._is_staff = value
+
+    def _exist_in_staffuser(self):
+        try:
+            self.staffuser
+        except Staffuser.DoesNotExist:
+            return False
+        return True
+
+    def save_is_staff(self):
+        if self._is_staff is None:
+            return
+
+        if not self._exist_in_staffuser():
+            if self._is_staff:
+                Staffuser(user=self).save()
+        else:
+            if not self._is_staff:
+                self.staffuser.delete()
 
     @property
     def is_superuser(self):
-    	"Is the user a superuser of staff?"
-    	#Simplest possible answer: All admins are staff
-    	return (self.email in settings.STAFF_EMAILS)
+        if self._is_superuser is not None:
+            return self._is_superuser
+
+        if self.id is not None:
+            return self._exist_in_superuser()
+
+        raise ValueError('is_superuser has not assigned')
 
     @is_superuser.setter
     def is_superuser(self,value):
-        pass
+        self._is_superuser = value
+
+    def _exist_in_superuser(self):
+        try:
+            self.superuser
+        except Superuser.DoesNotExist:
+            return False
+        return True
+
+    def save_is_superuser(self):
+        if self._is_superuser is None:
+            return
+
+        if not self._exist_in_superuser():
+            if self._is_superuser:
+                Superuser(user=self).save()
+        else:
+            if not self._is_superuser:
+                self.superuser.delete()
+
+
+    def save(self, *args, **kwargs):
+        super(User, self).save(*args, **kwargs)
+        self.save_is_superuser()
+        self.save_is_staff()
+
+
+    def __str__(self):
+        return self.email         
+
+
+class Superuser(models.Model):
+    user = models.OneToOneField(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+    def __str__(self):
+        return self.user.email
+
+class Staffuser(models.Model):
+    user = models.OneToOneField(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+    def __str__(self):
+        return self.user.email
