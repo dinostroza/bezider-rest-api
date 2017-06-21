@@ -56,7 +56,7 @@ class User(AbstractBaseUser, PermissionsMixin):
         if self.id is not None:
             return self._exist_in_staffuser()
 
-        raise ValueError('is_staff has not assigned')
+        raise ValueError('is_staff has not been assigned')
 
     @is_staff.setter
     def is_staff(self,value):
@@ -88,7 +88,7 @@ class User(AbstractBaseUser, PermissionsMixin):
         if self.id is not None:
             return self._exist_in_superuser()
 
-        raise ValueError('is_superuser has not assigned')
+        raise ValueError('is_superuser has not been assigned')
 
     @is_superuser.setter
     def is_superuser(self,value):
