@@ -2,3 +2,6 @@ django==1.11.1
 djangorestframework==3.6.3
 psycopg2==2.7.1
 django-modeltranslation==0.12.1
+#developer-tools
+django-extensions
+jupyter

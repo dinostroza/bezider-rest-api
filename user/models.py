@@ -8,7 +8,7 @@ from django.conf import settings
 from django.core import exceptions
 
 from .managers import UserManager
-
+#from core.models import News
 
 class User(AbstractBaseUser, PermissionsMixin):
 
@@ -25,11 +25,44 @@ class User(AbstractBaseUser, PermissionsMixin):
     #country          = 
     #languages        = 
     self_description = models.TextField('self description', max_length=500, blank=True)
-    #profile_picture  = models.ImageField(upload_to='profile_pictures/', null=True, blank=True)
+    profile_picture  = models.ImageField(upload_to='profile_pictures/', null=True, blank=True)
     points           = models.IntegerField('points', default=0, blank=True)
     rank             = models.IntegerField('rank', default=0, blank=True)
     date_joined      = models.DateTimeField('date joined', auto_now_add=True)
     is_active        = models.BooleanField('active', default=True, blank=True)
+
+    followers        = models.ManyToManyField(  
+        'self',
+        through='social.FollowingUser',
+        through_fields=('user','follower'),
+        symmetrical=False,
+        related_name='following'
+    )
+
+    @property
+    def num_followers(self):
+        return self.followers.count()
+
+    @property
+    def num_news(self):
+        return self.news.count()
+
+    @property
+    def num_catchers(self):
+        return self.catchers.count()
+
+    @property
+    def num_comments(self):
+        return self.comments.count()
+
+    @property
+    def num_replies(self):
+        return self.replies.count()
+
+    @property
+    def num_witnesses(self):
+        return self.witnesses.count()
+
 
     objects = UserManager()
 

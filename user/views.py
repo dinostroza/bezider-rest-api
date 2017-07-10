@@ -1,3 +1,9 @@
-from django.shortcuts import render
+from rest_framework.generics import *
+from rest_framework.permissions import *
+from user.models import *
+from user.serializers import *
 
-# Create your views here.
+class PublicUserPerfilAPIView(RetrieveAPIView):
+	queryset = User.objects.all()
+	serializer_class = PublicUserPerfilSerializer
+	#permission_classes = [IsAuthenticated]

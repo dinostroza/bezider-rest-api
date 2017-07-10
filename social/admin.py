@@ -1,10 +1,10 @@
 from django.contrib import admin
-from .models import Comment, Comment2Comment, Like, FollowingUser, FollowingNews, FollowingCatcher
+from .models import *
 
 class CommentAdmin(admin.ModelAdmin):
 	pass
 
-class Comment2CommentAdmin(admin.ModelAdmin):
+class ReplyAdmin(admin.ModelAdmin):
 	pass
 
 class LikeAdmin(admin.ModelAdmin):
@@ -17,11 +17,19 @@ class FollowingNewsAdmin(admin.ModelAdmin):
 	pass
 
 class FollowingCatcherAdmin(admin.ModelAdmin):
-	pass	
+	pass
 
+class WitnessAdmin(admin.ModelAdmin):
+	pass
+
+class BookmarkAdmin(admin.ModelAdmin):
+	pass
+
+admin.site.register(Witness,CommentAdmin)
 admin.site.register(Comment,CommentAdmin)
-admin.site.register(Comment2Comment,Comment2CommentAdmin)
+admin.site.register(Reply,ReplyAdmin)
 admin.site.register(Like,LikeAdmin)
+admin.site.register(Bookmark,BookmarkAdmin)
 admin.site.register(FollowingUser,FollowingUserAdmin)
 admin.site.register(FollowingNews,FollowingNewsAdmin)
 admin.site.register(FollowingCatcher,FollowingCatcherAdmin)

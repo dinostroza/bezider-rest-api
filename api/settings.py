@@ -33,6 +33,7 @@ ALLOWED_HOSTS = []
 INSTALLED_APPS = [
     #Thrid Party Dependencies
     'modeltranslation',
+    'rest_framework',
     #Django Dependencies
     'django.contrib.admin',
     'django.contrib.auth',
@@ -45,7 +46,9 @@ INSTALLED_APPS = [
     #Own App Dependencies
     'user',
     'core',
-    'social'
+    'social',
+    #Thrid Party Dependencies for Helping Developing
+    'django_extensions',
 ]
 
 MIDDLEWARE = [
