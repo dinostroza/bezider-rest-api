@@ -106,3 +106,32 @@ class NewsCatcherSerializer(ModelSerializer):
 			'location',
 			'date'
 		]
+
+#-----------------------------------------------------------
+class UserNewsMapSerializer(ModelSerializer):
+	class Meta:
+		model = User
+		fields = ('id', 'username')
+
+class NewsMapSerializer(ModelSerializer):
+	user  = UserNewsMapSerializer(read_only=True)
+	class Meta:
+		model = News
+		fields = [
+			'id',
+			'user',
+			'title',
+			'type',
+			'content',
+			'latitude',
+			'longitude',
+			'date',
+			'life',
+			'num_visit',
+			'num_share',
+			'num_followers',
+			'num_likes',
+			'num_witnesses',
+			'num_comments',
+			'num_images',
+		]

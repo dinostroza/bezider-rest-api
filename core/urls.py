@@ -9,4 +9,5 @@ urlpatterns = [
     url(r'^news/type\/(?P<pk>\d+)/$',NewsTypeAPIView.as_view(), name='type'),
     url(r'^news/category\/(?P<pk>\d+)/$',NewsCategoryAPIView.as_view(), name='category'),
     url(r'^news/catcher\/(?P<pk>\d+)/$',NewsCatcherAPIView.as_view(), name='catcher'),
+    url(r'^news/map/$',NewsMapAPIView.as_view(), name='news'),
 ]

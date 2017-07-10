@@ -46,7 +46,9 @@ INSTALLED_APPS = [
     #Own App Dependencies
     'user',
     'core',
-    'social'
+    'social',
+    #Thrid Party Dependencies for Helping Developing
+    'django_extensions',
 ]
 
 MIDDLEWARE = [

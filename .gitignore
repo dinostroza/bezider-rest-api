@@ -4,3 +4,6 @@ env
 migrations
 bezider.sublime-project
 bezider.sublime-workspace
+.ipynb_checkpoints/
+*.ipynb
+

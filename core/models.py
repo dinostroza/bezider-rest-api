@@ -1,6 +1,6 @@
 from django.contrib.gis.db import models
 from django.conf import settings
-from .managers import NewsManager
+from .managers import NewsQuerySet
 
 def newsgategory_upload_location(instance,filename):
 	return "newsgategory/%s/%s" %(instance.id,filename)
@@ -89,7 +89,7 @@ class News(models.Model):
 		)
 
 
-	objects=NewsManager()
+	objects=NewsQuerySet.as_manager()
 
 	@property
 	def num_followers(self):

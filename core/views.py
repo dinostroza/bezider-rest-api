@@ -1,6 +1,3 @@
-from django.db.models import Q
-from django.contrib.gis.geos import Polygon
-#from django.utils.datastructures import MultiValueDictKeyError
 from rest_framework.generics import *
 #from .permissions import IsOwnerOrReadOnly
 from rest_framework.permissions import *
@@ -8,6 +5,14 @@ from core.models import *
 from social.models import *
 from core.serializers import *
 from social.serializers import *
+from .filters import *
+
+
+class NewsMapAPIView(ListAPIView):
+	queryset = News.objects.all()
+	serializer_class = NewsMapSerializer
+	filter_backends = (NewsMapFilter,)
+	#permission_classes = [IsAuthenticated]
 
 class NewsDetailAPIView(RetrieveAPIView):
 	queryset = News.objects.all()
