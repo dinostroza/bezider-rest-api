@@ -4,7 +4,6 @@ from rest_framework.permissions import *
 from core.models import *
 from social.models import *
 from core.serializers import *
-from social.serializers import *
 from .filters import *
 
 

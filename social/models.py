@@ -23,7 +23,7 @@ class Comment(models.Model):
 		verbose_name = 'Comment'
 		verbose_name_plural = 'Comments'
 	def __str__(self):
-		return '%s comment on \"%s\"' %(self.owner.username,self.news.title)
+		return '%s comment on \"%s\"' %(self.user.username,self.news.title)
 
 class Reply(models.Model):
 	user      = models.ForeignKey(settings.AUTH_USER_MODEL, related_name='replies',related_query_name='reply', on_delete=models.CASCADE)
@@ -44,7 +44,7 @@ class Reply(models.Model):
 		verbose_name = 'Reply'
 		verbose_name_plural = 'Replies'
 	def __str__(self):
-		return '%s comment to %s on \"%s\"' %(self.owner.username,self.comment.owner.username, self.comment.news.title)
+		return '%s comment to %s on \"%s\"' %(self.user.username,self.comment.user.username, self.comment.news.title)
 
 class Bookmark(models.Model):
 	user    = models.ForeignKey(settings.AUTH_USER_MODEL, related_name='bookmark_data',related_query_name='bookmark_data', on_delete=models.CASCADE)
@@ -77,7 +77,7 @@ class FollowingUser(models.Model):
 		verbose_name = 'Following User'
 		verbose_name_plural = 'Following Users'
 	def __str__(self):
-		return '%s is following to \"%s\"' %(self.follower.username, self.followed.username)
+		return '%s is following to \"%s\"' %(self.follower.username, self.user.username)
 
 class FollowingNews(models.Model):
 	follower    = models.ForeignKey(settings.AUTH_USER_MODEL,related_name='following_news_data',related_query_name='following_news_data', on_delete=models.CASCADE)
