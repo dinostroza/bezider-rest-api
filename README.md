@@ -1,4 +1,4 @@
-#Bezider REST Api
+# Bezider REST Api
 	
-##Installation
+## Installation
 	Please read and follow [instruction wiki page](https://github.com/dinostroza/bezider-rest-api/wiki/Installation) to install and test propertly *Bezider REST Api*.
